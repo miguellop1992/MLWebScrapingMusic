@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.media.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="406.0" prefWidth="577.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ve.com.miguellop.mlwebscrapingmusic.FXMLController">
+    <children>
+        <Button fx:id="button" layoutX="260.0" layoutY="19.0" onAction="#handleButtonAction" text="Go" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="19.0" />
+      <TextField fx:id="txt" layoutX="25.0" layoutY="19.0" prefHeight="25.0" prefWidth="227.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="68.0" AnchorPane.topAnchor="19.0" />
+      <TableView fx:id="table" layoutX="26.0" layoutY="53.0" onMouseClicked="#handleTableClicked" prefHeight="323.0" prefWidth="343.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="241.0" AnchorPane.topAnchor="61.0">
+        <columns>
+            <TableColumn prefWidth="75.0" text="Cancion">
+                <cellValueFactory>
+                    <javafx.scene.control.cell.PropertyValueFactory property="name" />
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <GridPane layoutX="350.0" layoutY="60.0" prefHeight="327.0" prefWidth="210.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="339.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="61.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="234.0" minHeight="10.0" prefHeight="234.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="158.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <MediaView fx:id="media" fitHeight="200.0" fitWidth="200.0">
+               <viewport>
+                  <Rectangle2D height="200.0" minX="20.0" minY="20.0" width="200.0" />
+               </viewport>
+            </MediaView>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <children>
+                  <Button minWidth="50.0" mnemonicParsing="false" onAction="#handleBackAction" text="&lt;-" />
+                  <Button minWidth="50.0" mnemonicParsing="false" onAction="#handlePlayAction" text="&gt;" />
+                  <Button minWidth="50.0" mnemonicParsing="false" onAction="#handlePauseAction" text="||" />
+                  <Button minWidth="50.0" mnemonicParsing="false" onAction="#handleNextAction" text="-&gt;" />
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+    </children>
+</AnchorPane>
