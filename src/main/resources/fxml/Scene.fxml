@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.web.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.media.*?>
@@ -9,10 +12,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="406.0" prefWidth="577.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ve.com.miguellop.mlwebscrapingmusic.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="406.0" prefWidth="577.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ve.com.miguellop.mlwebscrapingmusic.FXMLController">
     <children>
-        <Button fx:id="button" layoutX="260.0" layoutY="19.0" onAction="#handleButtonAction" text="Go" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="19.0" />
-      <TextField fx:id="txt" layoutX="25.0" layoutY="19.0" prefHeight="25.0" prefWidth="227.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="68.0" AnchorPane.topAnchor="19.0" />
+        <Button fx:id="button" layoutX="529.0" layoutY="19.0" onAction="#handleButtonAction" text="Go" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="19.0" />
+      <TextField fx:id="txt" layoutX="25.0" layoutY="19.0" prefHeight="25.0" prefWidth="497.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="19.0" />
       <TableView fx:id="table" layoutX="26.0" layoutY="53.0" onMouseClicked="#handleTableClicked" prefHeight="323.0" prefWidth="343.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="241.0" AnchorPane.topAnchor="61.0">
         <columns>
             <TableColumn prefWidth="75.0" text="Cancion">
@@ -25,7 +28,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <GridPane layoutX="350.0" layoutY="60.0" prefHeight="327.0" prefWidth="210.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="339.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="61.0">
+      <GridPane layoutX="363.0" layoutY="60.0" prefHeight="327.0" prefWidth="186.0" AnchorPane.bottomAnchor="18.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="61.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -34,19 +37,48 @@
           <RowConstraints maxHeight="158.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <MediaView fx:id="media" fitHeight="200.0" fitWidth="200.0">
-               <viewport>
-                  <Rectangle2D height="200.0" minX="20.0" minY="20.0" width="200.0" />
-               </viewport>
-            </MediaView>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <AnchorPane prefHeight="159.0" prefWidth="210.0" styleClass="media">
                <children>
-                  <Button minWidth="50.0" mnemonicParsing="false" onAction="#handleBackAction" text="&lt;-" />
-                  <Button minWidth="50.0" mnemonicParsing="false" onAction="#handlePlayAction" text="&gt;" />
-                  <Button minWidth="50.0" mnemonicParsing="false" onAction="#handlePauseAction" text="||" />
-                  <Button minWidth="50.0" mnemonicParsing="false" onAction="#handleNextAction" text="-&gt;" />
+                  <Text fx:id="text" fill="WHITE" layoutX="-6.0" layoutY="19.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <MediaView fx:id="media" fitHeight="200.0" fitWidth="200.0" styleClass="media" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <viewport>
+                        <Rectangle2D height="200.0" minX="20.0" minY="20.0" width="200.0" />
+                     </viewport>
+                  </MediaView>
                </children>
-            </HBox>
+            </AnchorPane>
+            <VBox alignment="TOP_RIGHT" prefHeight="62.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="displayTime" text="00:00/00:00" wrapText="true" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <StackPane VBox.vgrow="ALWAYS">
+                     <children>
+                        <ProgressBar fx:id="progress" prefHeight="18.0" prefWidth="193.0" progress="0.0" />
+                        <Slider fx:id="timeSlider" prefHeight="18.0" prefWidth="187.0" showTickMarks="true" />
+                     </children>
+                  </StackPane>
+                  <HBox alignment="CENTER" prefHeight="28.0" prefWidth="210.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <children>
+                        <Button minWidth="50.0" mnemonicParsing="false" onAction="#handleBackAction" text="&lt;-" />
+                        <Button minWidth="50.0" mnemonicParsing="false" onAction="#handlePlayAction" text="&gt;" />
+                        <Button minWidth="50.0" mnemonicParsing="false" onAction="#handlePauseAction" text="||" />
+                        <Button minWidth="50.0" mnemonicParsing="false" onAction="#handleNextAction" text="-&gt;" />
+                     </children>
+                  </HBox>
+                  <Label text="Volumen" />
+                  <Slider fx:id="volumeSlider" value="100.0" />
+               </children>
+               <GridPane.margin>
+                  <Insets top="5.0" />
+               </GridPane.margin>
+            </VBox>
          </children>
       </GridPane>
     </children>
